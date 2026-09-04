@@ -15,9 +15,11 @@ import { Route as CitizenRouteImport } from './routes/citizen'
 import { Route as EnginesRouteImport } from './routes/engines'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as OrganizationRouteImport } from './routes/organization'
 import { Route as ReportRouteImport } from './routes/report'
 import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as UnauthorizedRouteImport } from './routes/unauthorized'
+import { Route as UniversityRouteImport } from './routes/university'
 import { Route as ChallengesIndexRouteImport } from './routes/challenges.index'
 import { Route as ChallengesChallengeIdRouteImport } from './routes/challenges.$challengeId'
 import { Route as GovernmentIndexRouteImport } from './routes/government.index'
@@ -61,6 +63,11 @@ const ImpactRoute = ImpactRouteImport.update({
   path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrganizationRoute = OrganizationRouteImport.update({
+  id: '/organization',
+  path: '/organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportRoute = ReportRouteImport.update({
   id: '/report',
   path: '/report',
@@ -74,6 +81,11 @@ const TransparencyRoute = TransparencyRouteImport.update({
 const UnauthorizedRoute = UnauthorizedRouteImport.update({
   id: '/unauthorized',
   path: '/unauthorized',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UniversityRoute = UniversityRouteImport.update({
+  id: '/university',
+  path: '/university',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChallengesIndexRoute = ChallengesIndexRouteImport.update({
@@ -144,9 +156,11 @@ export interface FileRoutesByFullPath {
   '/engines': typeof EnginesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/impact': typeof ImpactRoute
+  '/organization': typeof OrganizationRoute
   '/report': typeof ReportRoute
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/university': typeof UniversityRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
   '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
@@ -167,9 +181,11 @@ export interface FileRoutesByTo {
   '/engines': typeof EnginesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/impact': typeof ImpactRoute
+  '/organization': typeof OrganizationRoute
   '/report': typeof ReportRoute
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/university': typeof UniversityRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
   '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
@@ -191,9 +207,11 @@ export interface FileRoutesById {
   '/engines': typeof EnginesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/impact': typeof ImpactRoute
+  '/organization': typeof OrganizationRoute
   '/report': typeof ReportRoute
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/university': typeof UniversityRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
   '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
@@ -216,9 +234,11 @@ export interface FileRouteTypes {
     | '/engines'
     | '/how-it-works'
     | '/impact'
+    | '/organization'
     | '/report'
     | '/transparency'
     | '/unauthorized'
+    | '/university'
     | '/challenges/$challengeId'
     | '/government/challenges'
     | '/government/clusters'
@@ -239,9 +259,11 @@ export interface FileRouteTypes {
     | '/engines'
     | '/how-it-works'
     | '/impact'
+    | '/organization'
     | '/report'
     | '/transparency'
     | '/unauthorized'
+    | '/university'
     | '/challenges/$challengeId'
     | '/government/challenges'
     | '/government/clusters'
@@ -262,9 +284,11 @@ export interface FileRouteTypes {
     | '/engines'
     | '/how-it-works'
     | '/impact'
+    | '/organization'
     | '/report'
     | '/transparency'
     | '/unauthorized'
+    | '/university'
     | '/challenges/$challengeId'
     | '/government/challenges'
     | '/government/clusters'
@@ -286,9 +310,11 @@ export interface RootRouteChildren {
   EnginesRoute: typeof EnginesRoute
   HowItWorksRoute: typeof HowItWorksRoute
   ImpactRoute: typeof ImpactRoute
+  OrganizationRoute: typeof OrganizationRoute
   ReportRoute: typeof ReportRoute
   TransparencyRoute: typeof TransparencyRoute
   UnauthorizedRoute: typeof UnauthorizedRoute
+  UniversityRoute: typeof UniversityRoute
   ChallengesChallengeIdRoute: typeof ChallengesChallengeIdRoute
   GovernmentChallengesRoute: typeof GovernmentChallengesRoute
   GovernmentClustersRoute: typeof GovernmentClustersRoute
@@ -347,6 +373,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/organization': {
+      id: '/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof OrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/report': {
       id: '/report'
       path: '/report'
@@ -366,6 +399,13 @@ declare module '@tanstack/react-router' {
       path: '/unauthorized'
       fullPath: '/unauthorized'
       preLoaderRoute: typeof UnauthorizedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/university': {
+      id: '/university'
+      path: '/university'
+      fullPath: '/university'
+      preLoaderRoute: typeof UniversityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/challenges/': {
@@ -462,9 +502,11 @@ const rootRouteChildren: RootRouteChildren = {
   EnginesRoute: EnginesRoute,
   HowItWorksRoute: HowItWorksRoute,
   ImpactRoute: ImpactRoute,
+  OrganizationRoute: OrganizationRoute,
   ReportRoute: ReportRoute,
   TransparencyRoute: TransparencyRoute,
   UnauthorizedRoute: UnauthorizedRoute,
+  UniversityRoute: UniversityRoute,
   ChallengesChallengeIdRoute: ChallengesChallengeIdRoute,
   GovernmentChallengesRoute: GovernmentChallengesRoute,
   GovernmentClustersRoute: GovernmentClustersRoute,
