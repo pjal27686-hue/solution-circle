@@ -148,13 +148,13 @@ function Workspace() {
                         <div>
                           <p className="text-sm font-medium">{m.title}</p>
                           <p className="text-xs text-muted-foreground">
-                            Due {new Date(m.dueAt).toLocaleDateString("en-IN")}
+                            Due {new Date(m.dueDate).toLocaleDateString("en-IN")}
                           </p>
                         </div>
                         <div className="flex items-center gap-2">
                           <Pill
                             tone={
-                              m.status === "verified"
+                              m.status === "approved"
                                 ? "success"
                                 : m.status === "submitted"
                                   ? "warning"
@@ -188,7 +188,7 @@ function Workspace() {
                       <li key={task.id} className="flex items-center justify-between gap-3 border-b border-border pb-2 last:border-0 last:pb-0">
                         <span>{task.title}</span>
                         <span className="flex items-center gap-2">
-                          <span className="text-xs text-muted-foreground">{task.assigneeName}</span>
+                          <span className="text-xs text-muted-foreground">{task.assignee}</span>
                           <Pill tone={task.status === "done" ? "success" : task.status === "doing" ? "info" : "neutral"}>
                             {task.status}
                           </Pill>
@@ -205,7 +205,7 @@ function Workspace() {
                       <li key={update.id} className="border-l-2 border-border pl-3">
                         <p className="text-sm">{update.body}</p>
                         <p className="mt-0.5 text-xs text-muted-foreground">
-                          {update.authorName} · {new Date(update.createdAt).toLocaleDateString("en-IN")}
+                          {update.author} · {new Date(update.createdAt).toLocaleDateString("en-IN")}
                         </p>
                       </li>
                     ))}
