@@ -21,6 +21,7 @@ import { Route as UnauthorizedRouteImport } from './routes/unauthorized'
 import { Route as ChallengesIndexRouteImport } from './routes/challenges.index'
 import { Route as ChallengesChallengeIdRouteImport } from './routes/challenges.$challengeId'
 import { Route as GovernmentIndexRouteImport } from './routes/government.index'
+import { Route as GovernmentClustersRouteImport } from './routes/government.clusters'
 import { Route as GovernmentReviewRouteImport } from './routes/government.review'
 import { Route as ReportsReportIdRouteImport } from './routes/reports.$reportId'
 
@@ -84,6 +85,11 @@ const GovernmentIndexRoute = GovernmentIndexRouteImport.update({
   path: '/government/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovernmentClustersRoute = GovernmentClustersRouteImport.update({
+  id: '/government/clusters',
+  path: '/government/clusters',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GovernmentReviewRoute = GovernmentReviewRouteImport.update({
   id: '/government/review',
   path: '/government/review',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges/': typeof ChallengesIndexRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges': typeof ChallengesIndexRoute
@@ -139,6 +147,7 @@ export interface FileRoutesById {
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges/': typeof ChallengesIndexRoute
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/unauthorized'
     | '/challenges/$challengeId'
+    | '/government/clusters'
     | '/government/review'
     | '/reports/$reportId'
     | '/challenges/'
@@ -173,6 +183,7 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/unauthorized'
     | '/challenges/$challengeId'
+    | '/government/clusters'
     | '/government/review'
     | '/reports/$reportId'
     | '/challenges'
@@ -189,6 +200,7 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/unauthorized'
     | '/challenges/$challengeId'
+    | '/government/clusters'
     | '/government/review'
     | '/reports/$reportId'
     | '/challenges/'
@@ -206,6 +218,7 @@ export interface RootRouteChildren {
   TransparencyRoute: typeof TransparencyRoute
   UnauthorizedRoute: typeof UnauthorizedRoute
   ChallengesChallengeIdRoute: typeof ChallengesChallengeIdRoute
+  GovernmentClustersRoute: typeof GovernmentClustersRoute
   GovernmentReviewRoute: typeof GovernmentReviewRoute
   ReportsReportIdRoute: typeof ReportsReportIdRoute
   ChallengesIndexRoute: typeof ChallengesIndexRoute
@@ -298,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GovernmentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/government/clusters': {
+      id: '/government/clusters'
+      path: '/government/clusters'
+      fullPath: '/government/clusters'
+      preLoaderRoute: typeof GovernmentClustersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/government/review': {
       id: '/government/review'
       path: '/government/review'
@@ -326,6 +346,7 @@ const rootRouteChildren: RootRouteChildren = {
   TransparencyRoute: TransparencyRoute,
   UnauthorizedRoute: UnauthorizedRoute,
   ChallengesChallengeIdRoute: ChallengesChallengeIdRoute,
+  GovernmentClustersRoute: GovernmentClustersRoute,
   GovernmentReviewRoute: GovernmentReviewRoute,
   ReportsReportIdRoute: ReportsReportIdRoute,
   ChallengesIndexRoute: ChallengesIndexRoute,
