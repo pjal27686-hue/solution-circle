@@ -21,8 +21,10 @@ import { Route as UnauthorizedRouteImport } from './routes/unauthorized'
 import { Route as ChallengesIndexRouteImport } from './routes/challenges.index'
 import { Route as ChallengesChallengeIdRouteImport } from './routes/challenges.$challengeId'
 import { Route as GovernmentIndexRouteImport } from './routes/government.index'
+import { Route as GovernmentChallengesRouteImport } from './routes/government.challenges'
 import { Route as GovernmentClustersRouteImport } from './routes/government.clusters'
 import { Route as GovernmentReviewRouteImport } from './routes/government.review'
+import { Route as GovernmentVerificationRouteImport } from './routes/government.verification'
 import { Route as ReportsReportIdRouteImport } from './routes/reports.$reportId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -85,6 +87,11 @@ const GovernmentIndexRoute = GovernmentIndexRouteImport.update({
   path: '/government/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovernmentChallengesRoute = GovernmentChallengesRouteImport.update({
+  id: '/government/challenges',
+  path: '/government/challenges',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GovernmentClustersRoute = GovernmentClustersRouteImport.update({
   id: '/government/clusters',
   path: '/government/clusters',
@@ -93,6 +100,11 @@ const GovernmentClustersRoute = GovernmentClustersRouteImport.update({
 const GovernmentReviewRoute = GovernmentReviewRouteImport.update({
   id: '/government/review',
   path: '/government/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovernmentVerificationRoute = GovernmentVerificationRouteImport.update({
+  id: '/government/verification',
+  path: '/government/verification',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsReportIdRoute = ReportsReportIdRouteImport.update({
@@ -112,8 +124,10 @@ export interface FileRoutesByFullPath {
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
+  '/government/verification': typeof GovernmentVerificationRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
@@ -129,8 +143,10 @@ export interface FileRoutesByTo {
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
+  '/government/verification': typeof GovernmentVerificationRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges': typeof ChallengesIndexRoute
   '/government': typeof GovernmentIndexRoute
@@ -147,8 +163,10 @@ export interface FileRoutesById {
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
+  '/government/verification': typeof GovernmentVerificationRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
@@ -166,8 +184,10 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/unauthorized'
     | '/challenges/$challengeId'
+    | '/government/challenges'
     | '/government/clusters'
     | '/government/review'
+    | '/government/verification'
     | '/reports/$reportId'
     | '/challenges/'
     | '/government/'
@@ -183,8 +203,10 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/unauthorized'
     | '/challenges/$challengeId'
+    | '/government/challenges'
     | '/government/clusters'
     | '/government/review'
+    | '/government/verification'
     | '/reports/$reportId'
     | '/challenges'
     | '/government'
@@ -200,8 +222,10 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/unauthorized'
     | '/challenges/$challengeId'
+    | '/government/challenges'
     | '/government/clusters'
     | '/government/review'
+    | '/government/verification'
     | '/reports/$reportId'
     | '/challenges/'
     | '/government/'
@@ -218,8 +242,10 @@ export interface RootRouteChildren {
   TransparencyRoute: typeof TransparencyRoute
   UnauthorizedRoute: typeof UnauthorizedRoute
   ChallengesChallengeIdRoute: typeof ChallengesChallengeIdRoute
+  GovernmentChallengesRoute: typeof GovernmentChallengesRoute
   GovernmentClustersRoute: typeof GovernmentClustersRoute
   GovernmentReviewRoute: typeof GovernmentReviewRoute
+  GovernmentVerificationRoute: typeof GovernmentVerificationRoute
   ReportsReportIdRoute: typeof ReportsReportIdRoute
   ChallengesIndexRoute: typeof ChallengesIndexRoute
   GovernmentIndexRoute: typeof GovernmentIndexRoute
@@ -311,6 +337,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GovernmentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/government/challenges': {
+      id: '/government/challenges'
+      path: '/government/challenges'
+      fullPath: '/government/challenges'
+      preLoaderRoute: typeof GovernmentChallengesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/government/clusters': {
       id: '/government/clusters'
       path: '/government/clusters'
@@ -323,6 +356,13 @@ declare module '@tanstack/react-router' {
       path: '/government/review'
       fullPath: '/government/review'
       preLoaderRoute: typeof GovernmentReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/government/verification': {
+      id: '/government/verification'
+      path: '/government/verification'
+      fullPath: '/government/verification'
+      preLoaderRoute: typeof GovernmentVerificationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports/$reportId': {
@@ -346,8 +386,10 @@ const rootRouteChildren: RootRouteChildren = {
   TransparencyRoute: TransparencyRoute,
   UnauthorizedRoute: UnauthorizedRoute,
   ChallengesChallengeIdRoute: ChallengesChallengeIdRoute,
+  GovernmentChallengesRoute: GovernmentChallengesRoute,
   GovernmentClustersRoute: GovernmentClustersRoute,
   GovernmentReviewRoute: GovernmentReviewRoute,
+  GovernmentVerificationRoute: GovernmentVerificationRoute,
   ReportsReportIdRoute: ReportsReportIdRoute,
   ChallengesIndexRoute: ChallengesIndexRoute,
   GovernmentIndexRoute: GovernmentIndexRoute,
