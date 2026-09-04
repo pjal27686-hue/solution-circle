@@ -11,7 +11,18 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CitizenRouteImport } from './routes/citizen'
+import { Route as EnginesRouteImport } from './routes/engines'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as ReportRouteImport } from './routes/report'
+import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as UnauthorizedRouteImport } from './routes/unauthorized'
+import { Route as ChallengesIndexRouteImport } from './routes/challenges.index'
+import { Route as ChallengesChallengeIdRouteImport } from './routes/challenges.$challengeId'
+import { Route as GovernmentIndexRouteImport } from './routes/government.index'
+import { Route as GovernmentReviewRouteImport } from './routes/government.review'
+import { Route as ReportsReportIdRouteImport } from './routes/reports.$reportId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +34,182 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CitizenRoute = CitizenRouteImport.update({
+  id: '/citizen',
+  path: '/citizen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnginesRoute = EnginesRouteImport.update({
+  id: '/engines',
+  path: '/engines',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportRoute = ReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransparencyRoute = TransparencyRouteImport.update({
+  id: '/transparency',
+  path: '/transparency',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UnauthorizedRoute = UnauthorizedRouteImport.update({
   id: '/unauthorized',
   path: '/unauthorized',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChallengesIndexRoute = ChallengesIndexRouteImport.update({
+  id: '/challenges/',
+  path: '/challenges/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChallengesChallengeIdRoute = ChallengesChallengeIdRouteImport.update({
+  id: '/challenges/$challengeId',
+  path: '/challenges/$challengeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovernmentIndexRoute = GovernmentIndexRouteImport.update({
+  id: '/government/',
+  path: '/government/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovernmentReviewRoute = GovernmentReviewRouteImport.update({
+  id: '/government/review',
+  path: '/government/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsReportIdRoute = ReportsReportIdRouteImport.update({
+  id: '/reports/$reportId',
+  path: '/reports/$reportId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/citizen': typeof CitizenRoute
+  '/engines': typeof EnginesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/impact': typeof ImpactRoute
+  '/report': typeof ReportRoute
+  '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/review': typeof GovernmentReviewRoute
+  '/reports/$reportId': typeof ReportsReportIdRoute
+  '/challenges/': typeof ChallengesIndexRoute
+  '/government/': typeof GovernmentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/citizen': typeof CitizenRoute
+  '/engines': typeof EnginesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/impact': typeof ImpactRoute
+  '/report': typeof ReportRoute
+  '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/review': typeof GovernmentReviewRoute
+  '/reports/$reportId': typeof ReportsReportIdRoute
+  '/challenges': typeof ChallengesIndexRoute
+  '/government': typeof GovernmentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/citizen': typeof CitizenRoute
+  '/engines': typeof EnginesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/impact': typeof ImpactRoute
+  '/report': typeof ReportRoute
+  '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
+  '/government/review': typeof GovernmentReviewRoute
+  '/reports/$reportId': typeof ReportsReportIdRoute
+  '/challenges/': typeof ChallengesIndexRoute
+  '/government/': typeof GovernmentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/unauthorized'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/citizen'
+    | '/engines'
+    | '/how-it-works'
+    | '/impact'
+    | '/report'
+    | '/transparency'
+    | '/unauthorized'
+    | '/challenges/$challengeId'
+    | '/government/review'
+    | '/reports/$reportId'
+    | '/challenges/'
+    | '/government/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/unauthorized'
-  id: '__root__' | '/' | '/auth' | '/unauthorized'
+  to:
+    | '/'
+    | '/auth'
+    | '/citizen'
+    | '/engines'
+    | '/how-it-works'
+    | '/impact'
+    | '/report'
+    | '/transparency'
+    | '/unauthorized'
+    | '/challenges/$challengeId'
+    | '/government/review'
+    | '/reports/$reportId'
+    | '/challenges'
+    | '/government'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/citizen'
+    | '/engines'
+    | '/how-it-works'
+    | '/impact'
+    | '/report'
+    | '/transparency'
+    | '/unauthorized'
+    | '/challenges/$challengeId'
+    | '/government/review'
+    | '/reports/$reportId'
+    | '/challenges/'
+    | '/government/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  CitizenRoute: typeof CitizenRoute
+  EnginesRoute: typeof EnginesRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  ImpactRoute: typeof ImpactRoute
+  ReportRoute: typeof ReportRoute
+  TransparencyRoute: typeof TransparencyRoute
   UnauthorizedRoute: typeof UnauthorizedRoute
+  ChallengesChallengeIdRoute: typeof ChallengesChallengeIdRoute
+  GovernmentReviewRoute: typeof GovernmentReviewRoute
+  ReportsReportIdRoute: typeof ReportsReportIdRoute
+  ChallengesIndexRoute: typeof ChallengesIndexRoute
+  GovernmentIndexRoute: typeof GovernmentIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +228,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/citizen': {
+      id: '/citizen'
+      path: '/citizen'
+      fullPath: '/citizen'
+      preLoaderRoute: typeof CitizenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/engines': {
+      id: '/engines'
+      path: '/engines'
+      fullPath: '/engines'
+      preLoaderRoute: typeof EnginesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/report': {
+      id: '/report'
+      path: '/report'
+      fullPath: '/report'
+      preLoaderRoute: typeof ReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transparency': {
+      id: '/transparency'
+      path: '/transparency'
+      fullPath: '/transparency'
+      preLoaderRoute: typeof TransparencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/unauthorized': {
       id: '/unauthorized'
       path: '/unauthorized'
       fullPath: '/unauthorized'
       preLoaderRoute: typeof UnauthorizedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/challenges/': {
+      id: '/challenges/'
+      path: '/challenges'
+      fullPath: '/challenges/'
+      preLoaderRoute: typeof ChallengesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/challenges/$challengeId': {
+      id: '/challenges/$challengeId'
+      path: '/challenges/$challengeId'
+      fullPath: '/challenges/$challengeId'
+      preLoaderRoute: typeof ChallengesChallengeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/government/': {
+      id: '/government/'
+      path: '/government'
+      fullPath: '/government/'
+      preLoaderRoute: typeof GovernmentIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/government/review': {
+      id: '/government/review'
+      path: '/government/review'
+      fullPath: '/government/review'
+      preLoaderRoute: typeof GovernmentReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports/$reportId': {
+      id: '/reports/$reportId'
+      path: '/reports/$reportId'
+      fullPath: '/reports/$reportId'
+      preLoaderRoute: typeof ReportsReportIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +318,18 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  CitizenRoute: CitizenRoute,
+  EnginesRoute: EnginesRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  ImpactRoute: ImpactRoute,
+  ReportRoute: ReportRoute,
+  TransparencyRoute: TransparencyRoute,
   UnauthorizedRoute: UnauthorizedRoute,
+  ChallengesChallengeIdRoute: ChallengesChallengeIdRoute,
+  GovernmentReviewRoute: GovernmentReviewRoute,
+  ReportsReportIdRoute: ReportsReportIdRoute,
+  ChallengesIndexRoute: ChallengesIndexRoute,
+  GovernmentIndexRoute: GovernmentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

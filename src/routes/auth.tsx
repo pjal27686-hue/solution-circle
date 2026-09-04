@@ -66,7 +66,7 @@ function AuthPage() {
         name: name.trim(),
         email: regEmail.trim(),
         role,
-        district: district.trim() || undefined,
+        ...(district.trim() ? { district: district.trim() } : {}),
         state: "Maharashtra",
       });
       toast.success("Account created");

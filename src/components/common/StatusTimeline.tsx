@@ -2,7 +2,7 @@ import { Check, Circle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { REPORT_STATUS_LABELS, REPORT_TIMELINE, type ReportStatus } from "@/types";
 
-export function ReportTimeline({ status, rejectionReason }: { status: ReportStatus; rejectionReason?: string }) {
+export function ReportTimeline({ status, rejectionReason }: { status: ReportStatus; rejectionReason?: string | undefined }) {
   if (status === "rejected") {
     return (
       <div className="rounded-md border border-destructive/40 bg-destructive/10 p-4">
