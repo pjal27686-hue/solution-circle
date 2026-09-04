@@ -43,7 +43,7 @@ function AdminDashboard() {
   const filteredLogs = (logs.data ?? []).filter((log) => {
     const q = search.trim().toLowerCase();
     if (!q) return true;
-    return [log.actorName, log.action, log.entityType, log.entityId, log.summary]
+    return [log.actorName, log.action, log.entityType, log.entityId, log.detail]
       .join(" ")
       .toLowerCase()
       .includes(q);
@@ -193,7 +193,7 @@ function AdminDashboard() {
               {data.map((log) => (
                 <li key={log.id} className="rounded-md border border-border bg-card p-4">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-sm font-medium">{log.summary}</span>
+                    <span className="text-sm font-medium">{log.detail}</span>
                     <span className="font-mono text-xs text-muted-foreground">
                       {new Date(log.createdAt).toLocaleString("en-IN")}
                     </span>
