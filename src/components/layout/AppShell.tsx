@@ -2,21 +2,17 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import {
   Activity,
   BarChart3,
-  Building2,
   ClipboardCheck,
   FileStack,
   FolderKanban,
-  GraduationCap,
   Home,
   Landmark,
   LayoutDashboard,
   Layers,
   LogOut,
   Menu,
-  ScrollText,
   ShieldCheck,
   Target,
-  Users,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
