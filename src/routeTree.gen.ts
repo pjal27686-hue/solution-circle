@@ -26,6 +26,7 @@ import { Route as GovernmentClustersRouteImport } from './routes/government.clus
 import { Route as GovernmentReviewRouteImport } from './routes/government.review'
 import { Route as GovernmentVerificationRouteImport } from './routes/government.verification'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
 import { Route as ReportsReportIdRouteImport } from './routes/reports.$reportId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -113,6 +114,11 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsProjectIdRoute = ProjectsProjectIdRouteImport.update({
+  id: '/projects/$projectId',
+  path: '/projects/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportsReportIdRoute = ReportsReportIdRouteImport.update({
   id: '/reports/$reportId',
   path: '/reports/$reportId',
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/government/verification': typeof GovernmentVerificationRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/government/verification': typeof GovernmentVerificationRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges': typeof ChallengesIndexRoute
   '/government': typeof GovernmentIndexRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/government/verification': typeof GovernmentVerificationRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/government/clusters'
     | '/government/review'
     | '/government/verification'
+    | '/projects/$projectId'
     | '/reports/$reportId'
     | '/challenges/'
     | '/government/'
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/government/clusters'
     | '/government/review'
     | '/government/verification'
+    | '/projects/$projectId'
     | '/reports/$reportId'
     | '/challenges'
     | '/government'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '/government/clusters'
     | '/government/review'
     | '/government/verification'
+    | '/projects/$projectId'
     | '/reports/$reportId'
     | '/challenges/'
     | '/government/'
@@ -258,6 +270,7 @@ export interface RootRouteChildren {
   GovernmentClustersRoute: typeof GovernmentClustersRoute
   GovernmentReviewRoute: typeof GovernmentReviewRoute
   GovernmentVerificationRoute: typeof GovernmentVerificationRoute
+  ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
   ReportsReportIdRoute: typeof ReportsReportIdRoute
   ChallengesIndexRoute: typeof ChallengesIndexRoute
   GovernmentIndexRoute: typeof GovernmentIndexRoute
@@ -385,6 +398,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/$projectId': {
+      id: '/projects/$projectId'
+      path: '/projects/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof ProjectsProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reports/$reportId': {
       id: '/reports/$reportId'
       path: '/reports/$reportId'
@@ -410,6 +430,7 @@ const rootRouteChildren: RootRouteChildren = {
   GovernmentClustersRoute: GovernmentClustersRoute,
   GovernmentReviewRoute: GovernmentReviewRoute,
   GovernmentVerificationRoute: GovernmentVerificationRoute,
+  ProjectsProjectIdRoute: ProjectsProjectIdRoute,
   ReportsReportIdRoute: ReportsReportIdRoute,
   ChallengesIndexRoute: ChallengesIndexRoute,
   GovernmentIndexRoute: GovernmentIndexRoute,
