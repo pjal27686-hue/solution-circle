@@ -157,7 +157,9 @@ function StudentDashboard() {
                 {data.slice(0, 4).map((app) => (
                   <li key={app.id} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-border bg-card p-4">
                     <div>
-                      <p className="text-sm font-medium">{app.challengeTitle}</p>
+                      <p className="text-sm font-medium">
+                        {challenges.data?.find((c) => c.id === app.challengeId)?.title ?? app.challengeId}
+                      </p>
                       <p className="text-xs text-muted-foreground">
                         {app.id} · {app.matchScore}% match
                       </p>
