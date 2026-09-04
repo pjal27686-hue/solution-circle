@@ -29,6 +29,7 @@ import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
 import { Route as ReportsReportIdRouteImport } from './routes/reports.$reportId'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
+import { Route as StudentApplicationsRouteImport } from './routes/student.applications'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -130,6 +131,11 @@ const StudentIndexRoute = StudentIndexRouteImport.update({
   path: '/student/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentApplicationsRoute = StudentApplicationsRouteImport.update({
+  id: '/student/applications',
+  path: '/student/applications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/government/verification': typeof GovernmentVerificationRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
+  '/student/applications': typeof StudentApplicationsRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -170,6 +177,7 @@ export interface FileRoutesByTo {
   '/government/verification': typeof GovernmentVerificationRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
+  '/student/applications': typeof StudentApplicationsRoute
   '/challenges': typeof ChallengesIndexRoute
   '/government': typeof GovernmentIndexRoute
   '/projects': typeof ProjectsIndexRoute
@@ -193,6 +201,7 @@ export interface FileRoutesById {
   '/government/verification': typeof GovernmentVerificationRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
+  '/student/applications': typeof StudentApplicationsRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/government/verification'
     | '/projects/$projectId'
     | '/reports/$reportId'
+    | '/student/applications'
     | '/challenges/'
     | '/government/'
     | '/projects/'
@@ -239,6 +249,7 @@ export interface FileRouteTypes {
     | '/government/verification'
     | '/projects/$projectId'
     | '/reports/$reportId'
+    | '/student/applications'
     | '/challenges'
     | '/government'
     | '/projects'
@@ -261,6 +272,7 @@ export interface FileRouteTypes {
     | '/government/verification'
     | '/projects/$projectId'
     | '/reports/$reportId'
+    | '/student/applications'
     | '/challenges/'
     | '/government/'
     | '/projects/'
@@ -284,6 +296,7 @@ export interface RootRouteChildren {
   GovernmentVerificationRoute: typeof GovernmentVerificationRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
   ReportsReportIdRoute: typeof ReportsReportIdRoute
+  StudentApplicationsRoute: typeof StudentApplicationsRoute
   ChallengesIndexRoute: typeof ChallengesIndexRoute
   GovernmentIndexRoute: typeof GovernmentIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -432,6 +445,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student/applications': {
+      id: '/student/applications'
+      path: '/student/applications'
+      fullPath: '/student/applications'
+      preLoaderRoute: typeof StudentApplicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -452,6 +472,7 @@ const rootRouteChildren: RootRouteChildren = {
   GovernmentVerificationRoute: GovernmentVerificationRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
   ReportsReportIdRoute: ReportsReportIdRoute,
+  StudentApplicationsRoute: StudentApplicationsRoute,
   ChallengesIndexRoute: ChallengesIndexRoute,
   GovernmentIndexRoute: GovernmentIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
