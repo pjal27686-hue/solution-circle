@@ -28,6 +28,7 @@ import { Route as GovernmentVerificationRouteImport } from './routes/government.
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
 import { Route as ReportsReportIdRouteImport } from './routes/reports.$reportId'
+import { Route as StudentIndexRouteImport } from './routes/student.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -124,6 +125,11 @@ const ReportsReportIdRoute = ReportsReportIdRouteImport.update({
   path: '/reports/$reportId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentIndexRoute = StudentIndexRouteImport.update({
+  id: '/student/',
+  path: '/student/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/student/': typeof StudentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/challenges': typeof ChallengesIndexRoute
   '/government': typeof GovernmentIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/student': typeof StudentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/student/': typeof StudentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/challenges/'
     | '/government/'
     | '/projects/'
+    | '/student/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/challenges'
     | '/government'
     | '/projects'
+    | '/student'
   id:
     | '__root__'
     | '/'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/challenges/'
     | '/government/'
     | '/projects/'
+    | '/student/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   ChallengesIndexRoute: typeof ChallengesIndexRoute
   GovernmentIndexRoute: typeof GovernmentIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
+  StudentIndexRoute: typeof StudentIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -412,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsReportIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student/': {
+      id: '/student/'
+      path: '/student'
+      fullPath: '/student/'
+      preLoaderRoute: typeof StudentIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -435,6 +455,7 @@ const rootRouteChildren: RootRouteChildren = {
   ChallengesIndexRoute: ChallengesIndexRoute,
   GovernmentIndexRoute: GovernmentIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
+  StudentIndexRoute: StudentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
