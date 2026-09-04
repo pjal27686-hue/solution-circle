@@ -65,7 +65,7 @@ export async function handleMockRequest<T>(
   const [rawPath, queryString] = path.split("?");
   const segments = (rawPath ?? "").split("/").filter(Boolean); // ["api", ...]
   const query = new URLSearchParams(queryString ?? "");
-  const route = segments.slice(1); // drop "api"
+  const route = segments[0] === "api" ? segments.slice(1) : segments; // paths may or may not carry the /api prefix
   const key = `${method} /${route.map((s, i) => (i > 0 && /^(RPT|CLS|CHL|APP|PRJ|EVD|USR|TEA)-/.test(s) ? ":id" : s)).join("/")}`;
 
   const result = await resolve(key, route, query, body);

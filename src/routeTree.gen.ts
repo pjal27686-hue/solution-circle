@@ -10,14 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CitizenRouteImport } from './routes/citizen'
 import { Route as EnginesRouteImport } from './routes/engines'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as OrganizationRouteImport } from './routes/organization'
 import { Route as ReportRouteImport } from './routes/report'
 import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as UnauthorizedRouteImport } from './routes/unauthorized'
+import { Route as UniversityRouteImport } from './routes/university'
 import { Route as ChallengesIndexRouteImport } from './routes/challenges.index'
 import { Route as ChallengesChallengeIdRouteImport } from './routes/challenges.$challengeId'
 import { Route as GovernmentIndexRouteImport } from './routes/government.index'
@@ -25,11 +28,20 @@ import { Route as GovernmentChallengesRouteImport } from './routes/government.ch
 import { Route as GovernmentClustersRouteImport } from './routes/government.clusters'
 import { Route as GovernmentReviewRouteImport } from './routes/government.review'
 import { Route as GovernmentVerificationRouteImport } from './routes/government.verification'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
 import { Route as ReportsReportIdRouteImport } from './routes/reports.$reportId'
+import { Route as StudentIndexRouteImport } from './routes/student.index'
+import { Route as StudentApplicationsRouteImport } from './routes/student.applications'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -57,6 +69,11 @@ const ImpactRoute = ImpactRouteImport.update({
   path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrganizationRoute = OrganizationRouteImport.update({
+  id: '/organization',
+  path: '/organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportRoute = ReportRouteImport.update({
   id: '/report',
   path: '/report',
@@ -70,6 +87,11 @@ const TransparencyRoute = TransparencyRouteImport.update({
 const UnauthorizedRoute = UnauthorizedRouteImport.update({
   id: '/unauthorized',
   path: '/unauthorized',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UniversityRoute = UniversityRouteImport.update({
+  id: '/university',
+  path: '/university',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChallengesIndexRoute = ChallengesIndexRouteImport.update({
@@ -107,148 +129,217 @@ const GovernmentVerificationRoute = GovernmentVerificationRouteImport.update({
   path: '/government/verification',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsProjectIdRoute = ProjectsProjectIdRouteImport.update({
+  id: '/projects/$projectId',
+  path: '/projects/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportsReportIdRoute = ReportsReportIdRouteImport.update({
   id: '/reports/$reportId',
   path: '/reports/$reportId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentIndexRoute = StudentIndexRouteImport.update({
+  id: '/student/',
+  path: '/student/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentApplicationsRoute = StudentApplicationsRouteImport.update({
+  id: '/student/applications',
+  path: '/student/applications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/citizen': typeof CitizenRoute
   '/engines': typeof EnginesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/impact': typeof ImpactRoute
+  '/organization': typeof OrganizationRoute
   '/report': typeof ReportRoute
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/university': typeof UniversityRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
   '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/government/verification': typeof GovernmentVerificationRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
+  '/student/applications': typeof StudentApplicationsRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/student/': typeof StudentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/citizen': typeof CitizenRoute
   '/engines': typeof EnginesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/impact': typeof ImpactRoute
+  '/organization': typeof OrganizationRoute
   '/report': typeof ReportRoute
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/university': typeof UniversityRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
   '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/government/verification': typeof GovernmentVerificationRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
+  '/student/applications': typeof StudentApplicationsRoute
   '/challenges': typeof ChallengesIndexRoute
   '/government': typeof GovernmentIndexRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/student': typeof StudentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/citizen': typeof CitizenRoute
   '/engines': typeof EnginesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/impact': typeof ImpactRoute
+  '/organization': typeof OrganizationRoute
   '/report': typeof ReportRoute
   '/transparency': typeof TransparencyRoute
   '/unauthorized': typeof UnauthorizedRoute
+  '/university': typeof UniversityRoute
   '/challenges/$challengeId': typeof ChallengesChallengeIdRoute
   '/government/challenges': typeof GovernmentChallengesRoute
   '/government/clusters': typeof GovernmentClustersRoute
   '/government/review': typeof GovernmentReviewRoute
   '/government/verification': typeof GovernmentVerificationRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
+  '/student/applications': typeof StudentApplicationsRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/student/': typeof StudentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/auth'
     | '/citizen'
     | '/engines'
     | '/how-it-works'
     | '/impact'
+    | '/organization'
     | '/report'
     | '/transparency'
     | '/unauthorized'
+    | '/university'
     | '/challenges/$challengeId'
     | '/government/challenges'
     | '/government/clusters'
     | '/government/review'
     | '/government/verification'
+    | '/projects/$projectId'
     | '/reports/$reportId'
+    | '/student/applications'
     | '/challenges/'
     | '/government/'
+    | '/projects/'
+    | '/student/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/auth'
     | '/citizen'
     | '/engines'
     | '/how-it-works'
     | '/impact'
+    | '/organization'
     | '/report'
     | '/transparency'
     | '/unauthorized'
+    | '/university'
     | '/challenges/$challengeId'
     | '/government/challenges'
     | '/government/clusters'
     | '/government/review'
     | '/government/verification'
+    | '/projects/$projectId'
     | '/reports/$reportId'
+    | '/student/applications'
     | '/challenges'
     | '/government'
+    | '/projects'
+    | '/student'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/auth'
     | '/citizen'
     | '/engines'
     | '/how-it-works'
     | '/impact'
+    | '/organization'
     | '/report'
     | '/transparency'
     | '/unauthorized'
+    | '/university'
     | '/challenges/$challengeId'
     | '/government/challenges'
     | '/government/clusters'
     | '/government/review'
     | '/government/verification'
+    | '/projects/$projectId'
     | '/reports/$reportId'
+    | '/student/applications'
     | '/challenges/'
     | '/government/'
+    | '/projects/'
+    | '/student/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   CitizenRoute: typeof CitizenRoute
   EnginesRoute: typeof EnginesRoute
   HowItWorksRoute: typeof HowItWorksRoute
   ImpactRoute: typeof ImpactRoute
+  OrganizationRoute: typeof OrganizationRoute
   ReportRoute: typeof ReportRoute
   TransparencyRoute: typeof TransparencyRoute
   UnauthorizedRoute: typeof UnauthorizedRoute
+  UniversityRoute: typeof UniversityRoute
   ChallengesChallengeIdRoute: typeof ChallengesChallengeIdRoute
   GovernmentChallengesRoute: typeof GovernmentChallengesRoute
   GovernmentClustersRoute: typeof GovernmentClustersRoute
   GovernmentReviewRoute: typeof GovernmentReviewRoute
   GovernmentVerificationRoute: typeof GovernmentVerificationRoute
+  ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
   ReportsReportIdRoute: typeof ReportsReportIdRoute
+  StudentApplicationsRoute: typeof StudentApplicationsRoute
   ChallengesIndexRoute: typeof ChallengesIndexRoute
   GovernmentIndexRoute: typeof GovernmentIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
+  StudentIndexRoute: typeof StudentIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -258,6 +349,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -295,6 +393,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/organization': {
+      id: '/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof OrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/report': {
       id: '/report'
       path: '/report'
@@ -314,6 +419,13 @@ declare module '@tanstack/react-router' {
       path: '/unauthorized'
       fullPath: '/unauthorized'
       preLoaderRoute: typeof UnauthorizedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/university': {
+      id: '/university'
+      path: '/university'
+      fullPath: '/university'
+      preLoaderRoute: typeof UniversityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/challenges/': {
@@ -365,6 +477,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GovernmentVerificationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$projectId': {
+      id: '/projects/$projectId'
+      path: '/projects/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof ProjectsProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reports/$reportId': {
       id: '/reports/$reportId'
       path: '/reports/$reportId'
@@ -372,27 +498,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsReportIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student/': {
+      id: '/student/'
+      path: '/student'
+      fullPath: '/student/'
+      preLoaderRoute: typeof StudentIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student/applications': {
+      id: '/student/applications'
+      path: '/student/applications'
+      fullPath: '/student/applications'
+      preLoaderRoute: typeof StudentApplicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   CitizenRoute: CitizenRoute,
   EnginesRoute: EnginesRoute,
   HowItWorksRoute: HowItWorksRoute,
   ImpactRoute: ImpactRoute,
+  OrganizationRoute: OrganizationRoute,
   ReportRoute: ReportRoute,
   TransparencyRoute: TransparencyRoute,
   UnauthorizedRoute: UnauthorizedRoute,
+  UniversityRoute: UniversityRoute,
   ChallengesChallengeIdRoute: ChallengesChallengeIdRoute,
   GovernmentChallengesRoute: GovernmentChallengesRoute,
   GovernmentClustersRoute: GovernmentClustersRoute,
   GovernmentReviewRoute: GovernmentReviewRoute,
   GovernmentVerificationRoute: GovernmentVerificationRoute,
+  ProjectsProjectIdRoute: ProjectsProjectIdRoute,
   ReportsReportIdRoute: ReportsReportIdRoute,
+  StudentApplicationsRoute: StudentApplicationsRoute,
   ChallengesIndexRoute: ChallengesIndexRoute,
   GovernmentIndexRoute: GovernmentIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
+  StudentIndexRoute: StudentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -40,7 +40,7 @@ function CitizenDashboard() {
   const reports = query.data ?? [];
   const counts = {
     total: reports.length,
-    verified: reports.filter((r) => ["verified", "clustered", "challenge_created", "assigned", "in_progress", "government_verification", "resolved"].includes(r.status)).length,
+    verified: reports.filter((r) => ["verified", "clustered", "converted", "assigned", "in_progress", "gov_verification", "resolved"].includes(r.status)).length,
     clustered: reports.filter((r) => Boolean(r.clusterId)).length,
     resolved: reports.filter((r) => r.status === "resolved").length,
   };

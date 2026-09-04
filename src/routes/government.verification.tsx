@@ -98,7 +98,7 @@ function Verification() {
                 <li key={project.id} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-border bg-card p-4">
                   <div>
                     <Link to="/projects/$projectId" params={{ projectId: project.id }} className="font-medium hover:text-primary">
-                      {project.title}
+                      {project.code}
                     </Link>
                     <p className="mt-0.5 text-xs text-muted-foreground">
                       {project.id} · {project.teamName} · {project.progress}% reported progress
@@ -154,7 +154,7 @@ function Verification() {
                         <Pill>{item.kind.replace(/_/g, " ")}</Pill>
                       </td>
                       <td className="px-4 py-3 font-mono text-xs text-muted-foreground">{item.storageKey}</td>
-                      <td className="px-4 py-3 text-muted-foreground">{item.uploadedByName}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{item.ownerName}</td>
                       <td className="px-4 py-3">
                         <Pill
                           tone={

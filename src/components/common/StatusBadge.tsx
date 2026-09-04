@@ -1,5 +1,11 @@
 import { cn } from "@/lib/utils";
-import { REPORT_STATUS_LABELS, type ApplicationStatus, type ChallengeStatus, type ReportStatus } from "@/types";
+import {
+  REPORT_STATUS_LABELS,
+  type ApplicationStatus,
+  type ChallengeStatus,
+  type ProjectStatus,
+  type ReportStatus,
+} from "@/types";
 
 type Tone = "neutral" | "info" | "success" | "warning" | "danger" | "primary";
 
@@ -84,6 +90,20 @@ export function ChallengeStatusBadge({ status }: { status: ChallengeStatus }) {
 
 export function ApplicationStatusBadge({ status }: { status: ApplicationStatus }) {
   return <Pill tone={APPLICATION_TONE[status]}>{status.replace(/_/g, " ")}</Pill>;
+}
+
+const PROJECT_TONE: Record<ProjectStatus, Tone> = {
+  ALLOCATED: "info",
+  ACCEPTED: "primary",
+  IN_PROGRESS: "warning",
+  SUBMITTED: "warning",
+  VERIFICATION: "warning",
+  COMPLETED: "success",
+  CANCELLED: "danger",
+};
+
+export function ProjectStatusBadge({ status }: { status: ProjectStatus }) {
+  return <Pill tone={PROJECT_TONE[status]}>{status.replace(/_/g, " ")}</Pill>;
 }
 
 export function PriorityBadge({ score }: { score: number }) {

@@ -2,21 +2,17 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import {
   Activity,
   BarChart3,
-  Building2,
   ClipboardCheck,
   FileStack,
   FolderKanban,
-  GraduationCap,
   Home,
   Landmark,
   LayoutDashboard,
   Layers,
   LogOut,
   Menu,
-  ScrollText,
   ShieldCheck,
   Target,
-  Users,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
@@ -70,23 +66,22 @@ const NAV_BY_ROLE: Record<Role, NavItem[]> = {
     { to: "/impact", label: "Impact analytics", icon: BarChart3 },
   ],
   platform_admin: [
-    { to: "/admin", label: "Overview", icon: LayoutDashboard },
-    { to: "/admin/users", label: "Users & roles", icon: Users },
-    { to: "/admin/organizations", label: "Organizations", icon: Building2 },
-    { to: "/admin/universities", label: "Universities", icon: GraduationCap },
-    { to: "/admin/audit-logs", label: "Audit logs", icon: ScrollText },
+    { to: "/admin", label: "Administration", icon: LayoutDashboard },
+    { to: "/government", label: "Government view", icon: Landmark },
+    { to: "/challenges", label: "Challenges", icon: Target },
+    { to: "/projects", label: "Projects", icon: FolderKanban },
     { to: "/impact", label: "Analytics", icon: BarChart3 },
   ],
   super_admin: [
-    { to: "/admin", label: "Overview", icon: LayoutDashboard },
-    { to: "/admin/users", label: "Users & roles", icon: Users },
-    { to: "/admin/organizations", label: "Organizations", icon: Building2 },
-    { to: "/admin/universities", label: "Universities", icon: GraduationCap },
-    { to: "/admin/audit-logs", label: "Audit logs", icon: ScrollText },
+    { to: "/admin", label: "Administration", icon: LayoutDashboard },
     { to: "/government", label: "Government view", icon: Landmark },
+    { to: "/government/clusters", label: "Clusters & priority", icon: Layers },
+    { to: "/challenges", label: "Challenges", icon: Target },
+    { to: "/projects", label: "Projects", icon: FolderKanban },
     { to: "/impact", label: "Analytics", icon: BarChart3 },
   ],
 };
+
 
 export function AppShell({ children, allow }: { children: ReactNode; allow?: Role[] }) {
   const { user, logout, hydrated } = useAuth();
