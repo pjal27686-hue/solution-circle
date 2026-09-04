@@ -132,9 +132,7 @@ function AdminDashboard() {
               <div key={dept.id} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-border bg-card p-4">
                 <div>
                   <p className="text-sm font-medium">{dept.name}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {dept.district}, {dept.state}
-                  </p>
+                  <p className="text-xs text-muted-foreground">{dept.state}</p>
                 </div>
                 <Pill>{dept.openChallenges} open</Pill>
               </div>
