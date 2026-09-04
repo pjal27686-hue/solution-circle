@@ -103,6 +103,7 @@ export interface CitizenReport {
   createdAt: string;
   updatedAt: string;
   clusterId?: string | undefined;
+  mergedInto?: string | undefined;
   rejectionReason?: string | undefined;
   structured?: StructuredProblem | undefined;
   demo: boolean;

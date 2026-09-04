@@ -1,4 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { Loader2 } from "lucide-react";
 import type { Role, User } from "@/types";
 import { authService, type Actor } from "@/services";
 
@@ -94,4 +96,27 @@ export function homeRouteForRole(role: Role): string {
     default:
       return "/admin";
   }
+}
+
+export function RequireRole({ roles, children }: { roles: Role[]; children: ReactNode }) {
+  const { user, hydrated, hasRole } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!hydrated) return;
+    if (!user) void navigate({ to: "/auth", replace: true });
+    else if (!hasRole(roles)) void navigate({ to: "/unauthorized", replace: true });
+  }, [hydrated, user, hasRole, roles, navigate]);
+
+  if (!hydrated || !user || !hasRole(roles)) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Loader2 className="size-4 animate-spin" aria-hidden /> Checking your access…
+        </div>
+      </div>
+    );
+  }
+
+  return <>{children}</>;
 }
