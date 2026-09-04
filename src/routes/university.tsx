@@ -106,7 +106,7 @@ function UniversityDashboard() {
                     </div>
                     <div>
                       <dt className="text-muted-foreground">On time</dt>
-                      <dd className="font-medium tabular-nums">{Math.round(team.onTimeRate * 100)}%</dd>
+                      <dd className="font-medium tabular-nums">{team.onTimeRate}%</dd>
                     </div>
                   </dl>
                   <p className="mt-3 text-xs text-muted-foreground">
