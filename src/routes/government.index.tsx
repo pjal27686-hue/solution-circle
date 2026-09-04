@@ -135,7 +135,7 @@ function GovernmentDashboard() {
                       <div>
                         <p className="text-sm font-medium">{dept.name}</p>
                         <p className="text-xs text-muted-foreground">
-                          {dept.code} · {dept.district}
+                          {dept.state} · {dept.openChallenges} open
                         </p>
                       </div>
                       <span className="rounded-sm bg-primary/15 px-2 py-1 text-xs font-medium tabular-nums text-primary">
@@ -181,8 +181,8 @@ function GovernmentDashboard() {
                     </div>
                     <h3 className="mt-1.5 font-display text-base font-semibold">{cluster.title}</h3>
                     <p className="mt-1 text-xs text-muted-foreground">
-                      {cluster.reportCount} reports · {cluster.affectedPeople.toLocaleString("en-IN")} affected ·{" "}
-                      {cluster.locality}, {cluster.district}
+                      {cluster.reportIds.length} reports ·{" "}
+                      {cluster.affectedPeople.toLocaleString("en-IN")} affected · {cluster.district}
                     </p>
                   </li>
                 ))}

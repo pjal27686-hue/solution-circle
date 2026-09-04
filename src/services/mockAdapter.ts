@@ -194,6 +194,7 @@ async function resolve(
       target.evidenceCount += source.evidenceCount;
       source.status = "clustered";
       source.clusterId = target.clusterId;
+      source.mergedInto = target.id;
       logAction({
         actorId: actor.id,
         actorName: actor.name,
