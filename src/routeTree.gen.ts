@@ -25,6 +25,7 @@ import { Route as GovernmentChallengesRouteImport } from './routes/government.ch
 import { Route as GovernmentClustersRouteImport } from './routes/government.clusters'
 import { Route as GovernmentReviewRouteImport } from './routes/government.review'
 import { Route as GovernmentVerificationRouteImport } from './routes/government.verification'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ReportsReportIdRouteImport } from './routes/reports.$reportId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -107,6 +108,11 @@ const GovernmentVerificationRoute = GovernmentVerificationRouteImport.update({
   path: '/government/verification',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportsReportIdRoute = ReportsReportIdRouteImport.update({
   id: '/reports/$reportId',
   path: '/reports/$reportId',
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByTo {
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges': typeof ChallengesIndexRoute
   '/government': typeof GovernmentIndexRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/challenges/': typeof ChallengesIndexRoute
   '/government/': typeof GovernmentIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -191,6 +200,7 @@ export interface FileRouteTypes {
     | '/reports/$reportId'
     | '/challenges/'
     | '/government/'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/reports/$reportId'
     | '/challenges'
     | '/government'
+    | '/projects'
   id:
     | '__root__'
     | '/'
@@ -229,6 +240,7 @@ export interface FileRouteTypes {
     | '/reports/$reportId'
     | '/challenges/'
     | '/government/'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -249,6 +261,7 @@ export interface RootRouteChildren {
   ReportsReportIdRoute: typeof ReportsReportIdRoute
   ChallengesIndexRoute: typeof ChallengesIndexRoute
   GovernmentIndexRoute: typeof GovernmentIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -365,6 +378,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GovernmentVerificationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reports/$reportId': {
       id: '/reports/$reportId'
       path: '/reports/$reportId'
@@ -393,6 +413,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReportsReportIdRoute: ReportsReportIdRoute,
   ChallengesIndexRoute: ChallengesIndexRoute,
   GovernmentIndexRoute: GovernmentIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
