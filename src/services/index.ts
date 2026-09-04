@@ -11,7 +11,6 @@ import type {
   ImpactMetrics,
   Milestone,
   Organization,
-  Problem,
   ProblemCluster,
   Project,
   ProjectStatus,
@@ -137,4 +136,3 @@ export const analyticsService = {
   auditLogs: () => api<AuditLog[]>("/admin/audit-logs"),
 };
 
-export type { Problem };
