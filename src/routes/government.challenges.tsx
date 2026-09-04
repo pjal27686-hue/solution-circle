@@ -9,8 +9,8 @@ import { DataState } from "@/components/common/DataState";
 import { ApplicationStatusBadge, ChallengeStatusBadge, Pill, PriorityBadge } from "@/components/common/StatusBadge";
 import { Button } from "@/components/ui/button";
 import { applicationService, challengeService, projectService } from "@/services";
-import { NEXT_CHALLENGE_STATES } from "@/types";
-import type { ApplicationStatus, Challenge } from "@/types";
+import { nextChallengeStates } from "@/services/store";
+import type { ApplicationStatus, Challenge, ChallengeStatus } from "@/types";
 
 export const Route = createFileRoute("/government/challenges")({
   head: () => ({
@@ -110,7 +110,7 @@ function Pipeline() {
             <ul className="space-y-4">
               {data.map((challenge) => {
                 const apps = (applications.data ?? []).filter((a) => a.challengeId === challenge.id);
-                const next = NEXT_CHALLENGE_STATES[challenge.status] ?? [];
+                const next: ChallengeStatus[] = nextChallengeStates(challenge.status);
                 return (
                   <li key={challenge.id} className="rounded-md border border-border bg-card p-5">
                     <div className="flex flex-wrap items-start justify-between gap-3">
@@ -198,7 +198,7 @@ function Pipeline() {
                                         Allocate project
                                       </Button>
                                     )}
-                                    {!["rejected", "allocated"].includes(app.status) && (
+                                    {!["rejected", "selected"].includes(app.status) && (
                                       <Button size="sm" variant="ghost" onClick={() => decide.mutate({ id: app.id, status: "rejected" })}>
                                         Reject
                                       </Button>

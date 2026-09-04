@@ -143,6 +143,10 @@ const CHALLENGE_TRANSITIONS: Record<ChallengeStatus, ChallengeStatus[]> = {
   CANCELLED: [],
 };
 
+export function nextChallengeStates(from: ChallengeStatus): ChallengeStatus[] {
+  return CHALLENGE_TRANSITIONS[from];
+}
+
 export function canTransitionChallenge(from: ChallengeStatus, to: ChallengeStatus) {
   return CHALLENGE_TRANSITIONS[from].includes(to);
 }
