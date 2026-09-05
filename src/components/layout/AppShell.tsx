@@ -1,4 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import logoMark from "@/assets/civicbridge-mark.png.asset.json";
 import {
   Activity,
   BarChart3,
