@@ -1,4 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import logoMark from "@/assets/civicbridge-mark.png.asset.json";
 import {
   Activity,
   BarChart3,
@@ -120,9 +121,13 @@ export function AppShell({ children, allow }: { children: ReactNode; allow?: Rol
         <div className="gov-stripe h-1 w-full" aria-hidden />
         <div className="flex h-full flex-col">
           <Link to="/" className="flex items-center gap-2.5 px-4 py-4">
-            <span className="flex size-9 items-center justify-center rounded-sm bg-primary/15 text-primary">
-              <Landmark className="size-5" aria-hidden />
-            </span>
+            <img
+              src={logoMark.url}
+              alt="CivicBridge logo"
+              width={816}
+              height={816}
+              className="size-9 shrink-0 object-contain"
+            />
             <span className="leading-tight">
               <span className="block font-display text-sm font-semibold text-sidebar-foreground">CivicBridge</span>
               <span className="block text-[10px] uppercase tracking-[0.16em] text-muted-foreground">

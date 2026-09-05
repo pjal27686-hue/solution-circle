@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Landmark, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
+import logoMark from "@/assets/civicbridge-mark.png.asset.json";
 import { useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { useAuth, homeRouteForRole } from "@/hooks/useAuth";
@@ -23,9 +24,13 @@ export function PublicLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <Link to="/" className="flex items-center gap-2.5">
-            <span className="flex size-9 items-center justify-center rounded-sm bg-primary/15 text-primary">
-              <Landmark className="size-5" aria-hidden />
-            </span>
+            <img
+              src={logoMark.url}
+              alt="CivicBridge logo"
+              width={816}
+              height={816}
+              className="size-9 shrink-0 object-contain"
+            />
             <span className="leading-tight">
               <span className="block font-display text-base font-semibold">CivicBridge</span>
               <span className="block text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
