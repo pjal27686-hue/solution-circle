@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Landmark, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import logoMark from "@/assets/civicbridge-mark.png.asset.json";
 import { useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
