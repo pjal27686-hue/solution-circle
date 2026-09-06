@@ -18,6 +18,7 @@ import { PublicLayout } from "@/components/layout/PublicLayout";
 import { PageHeader } from "@/components/common/StatCard";
 import { Pill } from "@/components/common/StatusBadge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -70,6 +71,24 @@ const DOMAINS = [
 ];
 const DRAFT_KEY = "civicbridge.report.draft.v2";
 
+/* Vulnerable groups the reporter can tick. The number of selected groups is
+   mapped onto the existing 1-5 vulnerability column so the storage schema and
+   downstream engines stay unchanged. */
+const VULNERABLE_GROUPS = [
+  "Children",
+  "Elderly",
+  "Patients",
+  "Women",
+  "Pregnant women",
+  "Differently-abled",
+  "Students",
+  "Daily-wage workers",
+] as const;
+
+function groupsToVulnerability(groups: string[]): number {
+  return Math.min(5, Math.max(1, 1 + groups.length));
+}
+
 type FormState = {
   domain: string;
   title: string;
@@ -79,7 +98,7 @@ type FormState = {
   impactDescription: string;
   affectedPeople: number;
   frequency: CitizenReport["frequency"];
-  vulnerability: number;
+  vulnerableGroups: string[];
   locality: string;
   district: string;
   state: string;
@@ -99,7 +118,7 @@ const EMPTY: FormState = {
   impactDescription: "",
   affectedPeople: 0,
   frequency: "frequent",
-  vulnerability: 3,
+  vulnerableGroups: [],
   locality: "",
   district: "Pune",
   state: "Maharashtra",
@@ -211,10 +230,17 @@ function ReportPage() {
             description: form.description,
             affectedPeople: form.affectedPeople,
             frequency: form.frequency,
-            vulnerability: form.vulnerability,
+            vulnerability: groupsToVulnerability(form.vulnerableGroups),
           })
         : null,
-    [form.domain, form.title, form.description, form.affectedPeople, form.frequency, form.vulnerability],
+    [
+      form.domain,
+      form.title,
+      form.description,
+      form.affectedPeople,
+      form.frequency,
+      form.vulnerableGroups,
+    ],
   );
 
   const duplicates = useQuery({
@@ -249,7 +275,9 @@ function ReportPage() {
           severity: riskPercentToSeverity(form.riskPercent),
           affectedPeople: form.affectedPeople,
           frequency: form.frequency,
-          vulnerability: form.vulnerability,
+          // Vulnerability (1-5) is derived from the selected vulnerable groups so
+          // the existing column is reused without a schema change.
+          vulnerability: groupsToVulnerability(form.vulnerableGroups),
           evidenceCount: form.evidenceLabels.length,
           reporterId: actor.id,
           reporterName: actor.name,
@@ -515,15 +543,39 @@ function ReportPage() {
               </div>
 
               <div>
-                <Label>Vulnerable groups affected (children, elderly, patients): {form.vulnerability}/5</Label>
-                <Slider
-                  value={[form.vulnerability]}
-                  min={1}
-                  max={5}
-                  step={1}
-                  onValueChange={([v]) => set("vulnerability", v ?? 3)}
-                  className="mt-3"
-                />
+                <Label>Vulnerable groups affected</Label>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Tick every group the problem puts at higher risk (e.g. children, elderly, patients).
+                </p>
+                <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3">
+                  {VULNERABLE_GROUPS.map((group) => {
+                    const checked = form.vulnerableGroups.includes(group);
+                    return (
+                      <label
+                        key={group}
+                        className="flex items-center gap-2.5 text-sm font-medium capitalize"
+                      >
+                        <Checkbox
+                          checked={checked}
+                          onCheckedChange={(value) => {
+                            setForm((f) => ({
+                              ...f,
+                              vulnerableGroups: value
+                                ? [...f.vulnerableGroups, group]
+                                : f.vulnerableGroups.filter((g) => g !== group),
+                            }));
+                          }}
+                        />
+                        {group}
+                      </label>
+                    );
+                  })}
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {form.vulnerableGroups.length > 0
+                    ? `${form.vulnerableGroups.length} group${form.vulnerableGroups.length > 1 ? "s" : ""} selected · vulnerability weighting ${groupsToVulnerability(form.vulnerableGroups)}/5`
+                    : "None selected — vulnerability weighting defaults to 1/5."}
+                </p>
               </div>
 
               {/* AI suggestions from step 1 */}
