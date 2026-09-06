@@ -98,7 +98,7 @@ type FormState = {
   impactDescription: string;
   affectedPeople: number;
   frequency: CitizenReport["frequency"];
-  vulnerability: number;
+  vulnerableGroups: string[];
   locality: string;
   district: string;
   state: string;
@@ -118,7 +118,7 @@ const EMPTY: FormState = {
   impactDescription: "",
   affectedPeople: 0,
   frequency: "frequent",
-  vulnerability: 3,
+  vulnerableGroups: [],
   locality: "",
   district: "Pune",
   state: "Maharashtra",
