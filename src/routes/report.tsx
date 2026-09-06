@@ -275,7 +275,9 @@ function ReportPage() {
           severity: riskPercentToSeverity(form.riskPercent),
           affectedPeople: form.affectedPeople,
           frequency: form.frequency,
-          vulnerability: form.vulnerability,
+          // Vulnerability (1-5) is derived from the selected vulnerable groups so
+          // the existing column is reused without a schema change.
+          vulnerability: groupsToVulnerability(form.vulnerableGroups),
           evidenceCount: form.evidenceLabels.length,
           reporterId: actor.id,
           reporterName: actor.name,
