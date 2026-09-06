@@ -18,6 +18,7 @@ import { PublicLayout } from "@/components/layout/PublicLayout";
 import { PageHeader } from "@/components/common/StatCard";
 import { Pill } from "@/components/common/StatusBadge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
