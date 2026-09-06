@@ -543,15 +543,39 @@ function ReportPage() {
               </div>
 
               <div>
-                <Label>Vulnerable groups affected (children, elderly, patients): {form.vulnerability}/5</Label>
-                <Slider
-                  value={[form.vulnerability]}
-                  min={1}
-                  max={5}
-                  step={1}
-                  onValueChange={([v]) => set("vulnerability", v ?? 3)}
-                  className="mt-3"
-                />
+                <Label>Vulnerable groups affected</Label>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Tick every group the problem puts at higher risk (e.g. children, elderly, patients).
+                </p>
+                <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3">
+                  {VULNERABLE_GROUPS.map((group) => {
+                    const checked = form.vulnerableGroups.includes(group);
+                    return (
+                      <label
+                        key={group}
+                        className="flex items-center gap-2.5 text-sm font-medium capitalize"
+                      >
+                        <Checkbox
+                          checked={checked}
+                          onCheckedChange={(value) => {
+                            setForm((f) => ({
+                              ...f,
+                              vulnerableGroups: value
+                                ? [...f.vulnerableGroups, group]
+                                : f.vulnerableGroups.filter((g) => g !== group),
+                            }));
+                          }}
+                        />
+                        {group}
+                      </label>
+                    );
+                  })}
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {form.vulnerableGroups.length > 0
+                    ? `${form.vulnerableGroups.length} group${form.vulnerableGroups.length > 1 ? "s" : ""} selected · vulnerability weighting ${groupsToVulnerability(form.vulnerableGroups)}/5`
+                    : "None selected — vulnerability weighting defaults to 1/5."}
+                </p>
               </div>
 
               {/* AI suggestions from step 1 */}
