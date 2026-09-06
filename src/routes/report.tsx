@@ -230,10 +230,17 @@ function ReportPage() {
             description: form.description,
             affectedPeople: form.affectedPeople,
             frequency: form.frequency,
-            vulnerability: form.vulnerability,
+            vulnerability: groupsToVulnerability(form.vulnerableGroups),
           })
         : null,
-    [form.domain, form.title, form.description, form.affectedPeople, form.frequency, form.vulnerability],
+    [
+      form.domain,
+      form.title,
+      form.description,
+      form.affectedPeople,
+      form.frequency,
+      form.vulnerableGroups,
+    ],
   );
 
   const duplicates = useQuery({
