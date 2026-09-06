@@ -71,6 +71,24 @@ const DOMAINS = [
 ];
 const DRAFT_KEY = "civicbridge.report.draft.v2";
 
+/* Vulnerable groups the reporter can tick. The number of selected groups is
+   mapped onto the existing 1-5 vulnerability column so the storage schema and
+   downstream engines stay unchanged. */
+const VULNERABLE_GROUPS = [
+  "Children",
+  "Elderly",
+  "Patients",
+  "Women",
+  "Pregnant women",
+  "Differently-abled",
+  "Students",
+  "Daily-wage workers",
+] as const;
+
+function groupsToVulnerability(groups: string[]): number {
+  return Math.min(5, Math.max(1, 1 + groups.length));
+}
+
 type FormState = {
   domain: string;
   title: string;
